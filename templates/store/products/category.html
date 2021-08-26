@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "../../base.html"%}
+{% load static %}
+{% block title %}
+{% if category %}{{ category.name }} {% else %} Products {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <h3>{{ category.name|title}}</h3>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          {% for product in products %}
+        <div class="col">
+          <div class="card shadow-sm"><img class="img-fluid" src="{{product.image.url}}">
+            <div class="card-body">
+              <p class="card-text">
+                  <a class="text-dark" href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+          {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

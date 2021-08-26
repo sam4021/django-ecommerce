@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ecommerce.iml" filepath="$PROJECT_DIR$/.idea/ecommerce.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../smatsoft_system/.idea/smatsoft_system.iml" filepath="$PROJECT_DIR$/../../../smatsoft_system/.idea/smatsoft_system.iml" />
     </modules>
   </component>
 </project>
