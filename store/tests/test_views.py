@@ -1,3 +1,6 @@
+from importlib import import_module
+
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.http import HttpRequest
 from django.test import Client, RequestFactory, TestCase
@@ -39,17 +42,16 @@ class TestViewResponses(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_homepage_html(self):
+        """"
+        Example: Code Validation , search HTML for text
+        """
         request = HttpRequest()
+        engine = import_module(settings.SESSION_ENGINE)
+        request.session = engine.SessionStore()
         response = product_all(request)
         html = response.content.decode('utf8')
         self.assertIn('<title>Home</title>', html)
         # self.assertTrue(html.startswith('\n<!Doctype html>\n'))
         self.assertEqual(response.status_code, 200)
 
-    def test_view_function(self):
-        request = self.factory.get('/item/apple-phone')
-        response = product_all(request)
-        html = response.content.decode('utf8')
-        self.assertIn('<title>Home</title>', html)
-        # self.assertTrue(html.startswith('\n<!Doctype html>\n'))
-        self.assertEqual(response.status_code, 200)
+
